@@ -32,11 +32,11 @@ public class InfixExpressionEvaluation {
 			else if(t.equals(")")) {
 				while(!operatorStack.peek().equals("(")) {
 					
-					int firstNum = Integer.parseInt(operandStack.pop());
-					int secondNum = Integer.parseInt(operandStack.pop());
+					double firstNum = Double.parseDouble(operandStack.pop());
+					double secondNum = Double.parseDouble(operandStack.pop());
 					char operator = operatorStack.pop().charAt(0);
 					
-					operandStack.push(Integer.toString(performCalculation(firstNum, secondNum, operator)));
+					operandStack.push(Double.toString(performCalculation(firstNum, secondNum, operator)));
 				}
 				
 				operatorStack.pop();
@@ -45,13 +45,11 @@ public class InfixExpressionEvaluation {
 			else if(t.equals("+") || t.equals("-") || t.equals("*") || t.equals("/")) {
 				while(!operatorStack.empty() && operatorPrecedence(t, operatorStack.peek())) {
 					
-					int firstNum = Integer.parseInt(operandStack.pop());
-					int secondNum = Integer.parseInt(operandStack.pop());
+					double firstNum = Double.parseDouble(operandStack.pop());
+					double secondNum = Double.parseDouble(operandStack.pop());
 					char o = operatorStack.pop().charAt(0);
 					
-					
-					
-					operandStack.push(Integer.toString(performCalculation(firstNum, secondNum, o)));
+					operandStack.push(Double.toString(performCalculation(firstNum, secondNum, o)));
 				}
 				
 				operatorStack.push(t);
@@ -62,22 +60,20 @@ public class InfixExpressionEvaluation {
 		
 		while(!operatorStack.empty()){
 			
-			int firstNum = Integer.parseInt(operandStack.pop());
-			int secondNum = Integer.parseInt(operandStack.pop());
+			double firstNum = Double.parseDouble(operandStack.pop());
+			double secondNum = Double.parseDouble(operandStack.pop());
 			char operator = operatorStack.pop().charAt(0);
 			
-			int total = performCalculation(firstNum, secondNum, operator);
+			double total = performCalculation(firstNum, secondNum, operator);
 			
-			operandStack.push(Integer.toString(total));
-			
-			
+			operandStack.push(Double.toString(total));
 		}
 		
 		return operandStack.pop();
 		
 	}
 	
-	public static int performCalculation(int a, int b, char o) {
+	public static double performCalculation(double a, double b, char o) {
 		
 		switch(o) {
 		case '+':
@@ -88,7 +84,7 @@ public class InfixExpressionEvaluation {
 			return b * a;
 		case '/':
 			if(a == 0);
-				//exception here
+				//add exception here
 			return b / a;
 		}
 		return 0;
@@ -105,8 +101,6 @@ public class InfixExpressionEvaluation {
 	}
 	
 	public boolean isInteger(String input) {
-		
-		System.out.println("integer method");
 		
 		try {
 			Integer.parseInt(input);

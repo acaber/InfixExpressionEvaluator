@@ -105,8 +105,8 @@ public class GUI extends JFrame implements ActionListener {
 				
 				String input = inputTextField.getText();
 				InfixExpressionEvaluation i = new InfixExpressionEvaluation(input);
-				
-				resultTextField.setText(i.tokenize());
+				Double result = Double.parseDouble(i.tokenize());
+				resultTextField.setText(String.format("%.0f", result));
 		   }
 		});	
 		
