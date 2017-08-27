@@ -1,3 +1,12 @@
+/**
+ * FileName: GUI.java
+ * Author: Rebecca Johnson
+ * Date: 8/26/2017
+ * Description: Creates the GUI, holds the action listener for the
+ * 	evaluate button, and catches all DivideByZero exceptions.
+ *
+ */
+
 import java.awt.BorderLayout;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -63,8 +72,7 @@ public class GUI extends JFrame implements ActionListener {
 		resultTextField.setEditable(false);
 		
 		//calls addComponents() method to add components to panel
-		addComponents();
-		
+		addComponents();	
 	}
 			
 	//adds components to panel
@@ -99,23 +107,39 @@ public class GUI extends JFrame implements ActionListener {
 		GUI g = new GUI();
 		g.setVisible(true);
 	
-		
+		//evaluate button action listener
 		evaluateBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { 
 				
+				//sets the expression to the input string variable
 				String input = inputTextField.getText();
+				
+				//creates a new instance of the InfixExpressionEvaluation class
 				InfixExpressionEvaluation i = new InfixExpressionEvaluation(input);
-				Double result = Double.parseDouble(i.tokenize());
-				resultTextField.setText(String.format("%.0f", result));
+				
+				//to hold result of expression evaluation
+				int result;
+				
+				try {
+					
+					//sets the result to the result variable
+					result = Integer.parseInt(i.expressionEvaluator());
+					
+					//displays result to the result text field
+					resultTextField.setText(Integer.toString(result));
+					
+					//catches divide by zero exception
+				} catch (DivideByZero d) {
+					
+					//displays error message
+					JOptionPane.showMessageDialog(null, 
+							"Error! \nCan not divide by zero! \n" + 
+					d.getInvalidExpression() + " is an invalid expression.");
+				}
 		   }
-		});	
-		
-	}
-	
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		
+		});		
 	}
 
+	//needed to extend ActionListener class
+	public void actionPerformed(ActionEvent e) {}
 }
