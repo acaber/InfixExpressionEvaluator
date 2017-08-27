@@ -26,8 +26,8 @@ public class InfixExpressionEvaluation {
 	//constructor
 	public InfixExpressionEvaluation(String expression) {
 		
-		//stores the expression to the infixExpression field
-		this.infixExpression = expression; 
+		//stores the expression to the infixExpression field and removes all whitespace
+		this.infixExpression = expression.replaceAll("\\s+", ""); 
 	}
 	
 	//evaluates the expression
