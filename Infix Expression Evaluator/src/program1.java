@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
-public class GUI extends JFrame implements ActionListener {
+public class program1 extends JFrame implements ActionListener {
 	
 	//evaluate button
 	private static JButton evaluateBtn;
@@ -33,7 +33,7 @@ public class GUI extends JFrame implements ActionListener {
 	private JPanel panel;
 	
 	//constructor
-	public GUI() {
+	public program1() {
 		
 		//sets window title
 		super("Infix Expression Evaluator");
@@ -104,7 +104,7 @@ public class GUI extends JFrame implements ActionListener {
 	
 	//main method
 	public static void main(String[] args) {		
-		GUI g = new GUI();
+		program1 g = new program1();
 		g.setVisible(true);
 	
 		//evaluate button action listener
